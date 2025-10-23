@@ -18,9 +18,13 @@ def create_app(config_class=Config):
     db.init_app(app)
     migrate.init_app(app, db)
 
-    # Importa e registra o Blueprint com as rotas (faremos em breve)
-    # Por enquanto, vamos deixar comentado para não dar erro
-    # from app.routes import bp as main_bp
-    # app.register_blueprint(main_bp)
+    # -----------------------------------------------------------------
+    # REGISTRO DO BLUEPRINT (PASSO CHAVE)
+    # -----------------------------------------------------------------
+    # Importa o Blueprint que acabamos de criar
+    from app.routes import bp as api_blueprint
+    # Registra o Blueprint na nossa aplicação 'app'
+    app.register_blueprint(api_blueprint)
+    # -----------------------------------------------------------------
 
     return app
