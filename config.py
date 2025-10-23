@@ -1,13 +1,20 @@
 # config.py
 import os
+from dotenv import load_dotenv  # Importa a biblioteca
 
 # Pega o caminho absoluto do diretório onde o arquivo está
 basedir = os.path.abspath(os.path.dirname(__file__))
 
+# Carrega as variáveis do arquivo .env para o ambiente
+# Isso faz com que os.environ.get('DATABASE_URL') funcione
+load_dotenv(os.path.join(basedir, '.env'))
+
+
 class Config:
-    # Define a URI (o "endereço") do nosso banco de dados SQLite
-    # Ele vai criar um arquivo 'app.db' na sua pasta principal
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'app.db')
-    
-    # Desativa uma funcionalidade do SQLAlchemy que não usaremos para evitar avisos
+    # Agora, lemos a string de conexão da variável de ambiente 'DATABASE_URL'.
+    SQLALCHEMY_DATABASE_URI = os.environ.get('postgresql://neondb_owner:npg_SLgGD5M4lrxm@ep-square-grass-affj9i35-pooler.c-2.us-west-2.aws.neon.tech/neondb?sslmode=require&channel_binding=require')
+
+    # Se DATABASE_URL não for encontrada, ele vai dar erro (o que é bom,
+    # pois sabemos que precisamos dela).
+
     SQLALCHEMY_TRACK_MODIFICATIONS = False
