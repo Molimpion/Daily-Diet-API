@@ -4,7 +4,7 @@ Esta é uma API RESTful completa para o controle de dieta diária, desenvolvida 
 
 O objetivo deste projeto foi reforçar conceitos avançados de Flask e o desenvolvimento de APIs RESTful, implementando funcionalidades completas de CRUD (Criar, Ler, Atualizar, Deletar) com persistência em banco de dados.
 
-## ✨ Features Principais
+## Features Principais
 
 * **Gerenciamento de Refeições:** Sistema completo de CRUD (Criar, Ler, Atualizar, Deletar) para o gerenciamento de refeições.
 * **Persistência de Dados:** Utiliza PostgreSQL (hospedado na Neon) como banco de dados, com o ORM Flask-SQLAlchemy e gerenciamento de migrações com Flask-Migrate.
@@ -13,7 +13,7 @@ O objetivo deste projeto foi reforçar conceitos avançados de Flask e o desenvo
 * **Tratamento de Erros:** Implementa um sistema de tratamento de erros personalizado e centralizado, que retorna respostas JSON padronizadas para a API.
 * **Configuração Segura:** Gerenciamento de 'secrets' (como a URL do banco de dados) de forma segura através de variáveis de ambiente (`.env`).
 
-## 🚀 Tech Stack (Tecnologias Usadas)
+## Tech Stack (Tecnologias Usadas)
 
 * **Backend:** Flask
 * **Banco de Dados:** PostgreSQL (hospedado na Neon)
@@ -21,7 +21,7 @@ O objetivo deste projeto foi reforçar conceitos avançados de Flask e o desenvo
 * **Drivers:** psycopg2-binary
 * **Ambiente:** python-dotenv, venv
 
-## 🏁 Rodando o Projeto Localmente
+## Rodando o Projeto Localmente
 
 Siga os passos abaixo para configurar e executar o projeto em seu ambiente de desenvolvimento.
 
@@ -232,6 +232,6 @@ Deleta uma refeição específica do banco de dados.
 
 -----
 
-## 📄 Contexto
+## Origem do Projeto
 
 Este projeto foi desenvolvido como um desafio avançado proposto pela Rocketseat.
