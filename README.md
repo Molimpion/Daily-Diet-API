@@ -1,3 +1,6 @@
+Aqui está o conteúdo formatado em Markdown, pronto para ser usado em um `README.md` no GitHub.
+
+````markdown
 # Daily Diet API
 
 Esta é uma API RESTful completa para o controle de dieta diária, desenvolvida como um desafio prático de Flask. A aplicação permite o registro e gerenciamento de refeições, com informações detalhadas como nome, descrição, data/hora e se a refeição está ou não dentro da dieta.
@@ -36,9 +39,11 @@ Siga os passos abaixo para configurar e executar o projeto em seu ambiente de de
 ```bash
 git clone [https://github.com/seu-usuario/daily-diet-api.git](https://github.com/seu-usuario/daily-diet-api.git)
 cd daily-diet-api
-2. Crie e Ative o Ambiente Virtual (venv)
-Bash
+````
 
+### 2\. Crie e Ative o Ambiente Virtual (venv)
+
+```bash
 # Criar o ambiente
 python -m venv venv
 
@@ -47,31 +52,38 @@ source venv/bin/activate
 
 # Ativar no Windows (PowerShell)
 .\venv\Scripts\Activate.ps1
-3. Instale as Dependências
-Bash
+```
 
+### 3\. Instale as Dependências
+
+```bash
 pip install -r requirements.txt
-4. Configure as Variáveis de Ambiente
-Crie um arquivo chamado .env na raiz do projeto. Este arquivo não deve ser enviado ao Git.
+```
 
-Bash
+### 4\. Configure as Variáveis de Ambiente
 
+Crie um arquivo chamado `.env` na raiz do projeto. Este arquivo não deve ser enviado ao Git.
+
+```bash
 # Crie o arquivo (macOS/Linux)
 touch .env
 
 # Crie o arquivo (Windows)
 echo. > .env
-Abra o arquivo .env e adicione a sua string de conexão do PostgreSQL (copiada do Neon ou do seu banco local):
+```
 
-Ini, TOML
+Abra o arquivo `.env` e adicione a sua string de conexão do PostgreSQL (copiada do Neon ou do seu banco local):
 
+```ini
 # .env
 DATABASE_URL='postgresql://usuario:senha@host.neon.tech/nome-do-banco'
-5. Aplique as Migrações do Banco
-Esses comandos irão criar as tabelas no seu banco de dados com base nos modelos definidos em app/models.py.
+```
 
-Bash
+### 5\. Aplique as Migrações do Banco
 
+Esses comandos irão criar as tabelas no seu banco de dados com base nos modelos definidos em `app/models.py`.
+
+```bash
 # Define o app principal para o Flask (macOS/Linux)
 export FLASK_APP=run.py
 # No Windows: set FLASK_APP=run.py
@@ -84,32 +96,38 @@ flask db migrate -m "Initial migration. Create meal table."
 
 # 3. Aplica o script no banco de dados
 flask db upgrade
-6. Inicie o Servidor
-Bash
+```
 
+### 6\. Inicie o Servidor
+
+```bash
 flask run
-O servidor estará rodando em http://127.0.0.1:5000.
+```
 
-Endpoints da API (Uso)
-Todos os endpoints estão prefixados com /api/v1.
+O servidor estará rodando em `http://127.0.0.1:5000`.
 
-POST /api/v1/meals
+## Endpoints da API (Uso)
+
+Todos os endpoints estão prefixados com `/api/v1`.
+
+### `POST /api/v1/meals`
+
 Cria um novo registro de refeição.
 
-Corpo da Requisição (JSON):
+**Corpo da Requisição (JSON):**
 
-JSON
-
+```json
 {
   "name": "Almoço",
   "description": "Frango grelhado e salada césar.",
   "meal_datetime": "2025-10-24T12:30:00",
   "is_on_diet": true
 }
-Resposta de Sucesso (201 Created):
+```
 
-JSON
+**Resposta de Sucesso (201 Created):**
 
+```json
 {
   "message": "Refeição criada com sucesso!",
   "meal": {
@@ -122,13 +140,15 @@ JSON
     "updated_at": "2025-10-24T10:00:00.123456"
   }
 }
-GET /api/v1/meals
+```
+
+### `GET /api/v1/meals`
+
 Retorna uma lista de todas as refeições registradas.
 
-Resposta de Sucesso (200 OK):
+**Resposta de Sucesso (200 OK):**
 
-JSON
-
+```json
 {
   "meals": [
     {
@@ -142,13 +162,15 @@ JSON
     }
   ]
 }
-GET /api/v1/meals/<int:meal_id>
+```
+
+### `GET /api/v1/meals/<int:meal_id>`
+
 Retorna os detalhes de uma refeição específica.
 
-Resposta de Sucesso (200 OK):
+**Resposta de Sucesso (200 OK):**
 
-JSON
-
+```json
 {
   "meal": {
     "id": 1,
@@ -160,30 +182,34 @@ JSON
     "updated_at": "2025-10-24T10:00:00.123456"
   }
 }
-Resposta de Erro (404 Not Found):
+```
 
-JSON
+**Resposta de Erro (404 Not Found):**
 
+```json
 {
   "message": "Refeição não encontrada."
 }
-PUT /api/v1/meals/<int:meal_id>
+```
+
+### `PUT /api/v1/meals/<int:meal_id>`
+
 Atualiza (substitui) uma refeição existente. O corpo da requisição deve ser o objeto completo.
 
-Corpo da Requisição (JSON):
+**Corpo da Requisição (JSON):**
 
-JSON
-
+```json
 {
   "name": "Jantar Fora da Dieta",
   "description": "Pizza de calabresa",
   "meal_datetime": "2025-10-24T20:00:00",
   "is_on_diet": false
 }
-Resposta de Sucesso (200 OK):
+```
 
-JSON
+**Resposta de Sucesso (200 OK):**
 
+```json
 {
   "message": "Refeição atualizada com sucesso!",
   "meal": {
@@ -196,14 +222,22 @@ JSON
     "updated_at": "2025-10-24T11:30:00.654321"
   }
 }
-DELETE /api/v1/meals/<int:meal_id>
+```
+
+### `DELETE /api/v1/meals/<int:meal_id>`
+
 Deleta uma refeição específica do banco de dados.
 
-Resposta de Sucesso:
+**Resposta de Sucesso:**
 
-Status Code: 204 No Content
+  * **Status Code:** `204 No Content`
+  * **Corpo da Resposta:** Vazio.
 
-Corpo da Resposta: Vazio.
+-----
 
-📄 Contexto
+## 📄 Contexto
+
 Este projeto foi desenvolvido como um desafio avançado proposto pela Rocketseat.
+
+```
+```
