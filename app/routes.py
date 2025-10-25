@@ -218,3 +218,40 @@ def update_meal(meal_id):
         db.session.rollback()
         print(f"Erro de banco de dados: {str(e)}")
         raise InvalidAPIUsage("Erro interno ao atualizar os dados.", status_code=500)
+
+        # -----------------------------------------------------------------
+# Endpoint: Deletar uma Refeição (Delete)
+# -----------------------------------------------------------------
+# Rota: DELETE /api/v1/meals/<int:meal_id>
+# -----------------------------------------------------------------
+@bp.route('/meals/<int:meal_id>', methods=['DELETE'])
+def delete_meal(meal_id):
+    """
+    Deleta uma refeição existente com base no seu ID.
+    """
+    try:
+        # 1. Encontrar o Recurso
+        meal_to_delete = Meal.query.get(meal_id)
+        
+        # 2. Tratar "Não Encontrado"
+        if not meal_to_delete:
+            raise InvalidAPIUsage("Refeição não encontrada.", status_code=404)
+            
+        # 3. Deletar do Banco de Dados
+        # Prática Sênior: Adicionamos o objeto à sessão para
+        # deleção e então damos o commit.
+        db.session.delete(meal_to_delete)
+        db.session.commit()
+        
+        # 4. Prática Sênior: Resposta de Sucesso para DELETE
+        # O padrão HTTP para uma deleção bem-sucedida é retornar
+        # o status 204 (No Content - Sem Conteúdo).
+        # Este status, por definição, NÃO DEVE ter um corpo (body)
+        # na resposta. O Flask lida com isso automaticamente
+        # ao retornarmos uma string vazia ou None com o status 204.
+        return '', 204
+
+    except SQLAlchemyError as e:
+        db.session.rollback()
+        print(f"Erro de banco de dados: {str(e)}")
+        raise InvalidAPIUsage("Erro interno ao deletar os dados.", status_code=500)
