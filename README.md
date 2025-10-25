@@ -1,116 +1,149 @@
-# Daily Diet API
+<h1 align="center">🥗 Daily Diet API</h1>
 
-Esta é uma API RESTful completa para o controle de dieta diária, desenvolvida como um desafio prático de Flask. A aplicação permite o registro e gerenciamento de refeições, com informações detalhadas como nome, descrição, data/hora e se a refeição está ou não dentro da dieta.
+<p align="center">
+  <strong>API RESTful para controle de dieta diária</strong> — desenvolvida com <a href="https://flask.palletsprojects.com/">Flask</a> como desafio prático da <a href="https://www.rocketseat.com.br/">Rocketseat</a>.  
+  Permite o registro e gerenciamento de refeições, incluindo data, descrição e controle de dieta.
+</p>
 
-O objetivo deste projeto foi reforçar conceitos avançados de Flask e o desenvolvimento de APIs RESTful, implementando funcionalidades completas de CRUD (Criar, Ler, Atualizar, Deletar) com persistência em banco de dados.
+<p align="center">
+  <a href="#-features-principais">✨ Features</a> •
+  <a href="#-tech-stack">🚀 Tech Stack</a> •
+  <a href="#-rodando-o-projeto-localmente">🏁 Rodando o Projeto</a> •
+  <a href="#-endpoints-da-api">📡 Endpoints</a> •
+  <a href="#-contexto">📄 Contexto</a>
+</p>
+
+---
 
 ## ✨ Features Principais
 
-* **Gerenciamento de Refeições:** Sistema completo de CRUD (Criar, Ler, Atualizar, Deletar) para o gerenciamento de refeições.
-* **Persistência de Dados:** Utiliza PostgreSQL (hospedado na Neon) como banco de dados, com o ORM Flask-SQLAlchemy e gerenciamento de migrações com Flask-Migrate.
-* **Arquitetura Avançada:** Construído usando o padrão Application Factory (`create_app`) para modularidade e testabilidade.
-* **Rotas Componentizadas:** Utiliza Blueprints do Flask para agrupar e organizar os endpoints da API.
-* **Tratamento de Erros:** Implementa um sistema de tratamento de erros personalizado e centralizado, que retorna respostas JSON padronizadas para a API.
-* **Configuração Segura:** Gerenciamento de 'secrets' (como a URL do banco de dados) de forma segura através de variáveis de ambiente (`.env`).
+- ✅ **CRUD Completo:** Criação, leitura, atualização e exclusão de refeições.  
+- 🧩 **Arquitetura Modular:** Estruturada com o padrão *Application Factory (`create_app`)*.  
+- 🗂️ **Rotas Componentizadas:** Organização via *Blueprints* do Flask.  
+- ⚙️ **Persistência de Dados:** Banco de dados **PostgreSQL (Neon)** com **Flask-SQLAlchemy**.  
+- 🧱 **Migrações Automatizadas:** Gerenciadas com **Flask-Migrate (Alembic)**.  
+- 🚫 **Tratamento Centralizado de Erros:** Respostas padronizadas em JSON.  
+- 🔒 **Segurança:** Uso de variáveis de ambiente (`.env`) para dados sensíveis.  
 
-## 🚀 Tech Stack (Tecnologias Usadas)
+---
 
-* **Backend:** Flask
-* **Banco de Dados:** PostgreSQL (hospedado na Neon)
-* **ORM e Migrações:** Flask-SQLAlchemy, Flask-Migrate (Alembic)
-* **Drivers:** psycopg2-binary
-* **Ambiente:** python-dotenv, venv
+## 🚀 Tech Stack
+
+| Categoria | Tecnologias |
+|------------|--------------|
+| **Backend** | [Flask](https://flask.palletsprojects.com/) |
+| **Banco de Dados** | [PostgreSQL (Neon)](https://neon.tech) |
+| **ORM / Migrações** | Flask-SQLAlchemy, Flask-Migrate |
+| **Drivers** | psycopg2-binary |
+| **Ambiente** | python-dotenv, venv |
+
+---
 
 ## 🏁 Rodando o Projeto Localmente
 
-Siga os passos abaixo para configurar e executar o projeto em seu ambiente de desenvolvimento.
+Siga os passos abaixo para executar o projeto em seu ambiente de desenvolvimento.  
 
-### Pré-requisitos
+### 🔧 Pré-requisitos
 
-* Python 3.10+
-* Git
-* Um banco de dados PostgreSQL. Você pode criar uma conta gratuita no [Neon](https://neon.tech/) para obter uma URL de conexão em 1 minuto.
+- 🐍 **Python 3.10+**
+- 💾 **Git**
+- 🗃️ **PostgreSQL** (crie gratuitamente no [Neon](https://neon.tech))
 
-### 1. Clone o Repositório
+---
+
+### 1️⃣ Clone o Repositório
 
 ```bash
-git clone [https://github.com/seu-usuario/daily-diet-api.git](https://github.com/seu-usuario/daily-diet-api.git)
+git clone https://github.com/seu-usuario/daily-diet-api.git
 cd daily-diet-api
+````
 
-### 2\. Crie e Ative o Ambiente Virtual (venv)
+---
+
+### 2️⃣ Crie e Ative o Ambiente Virtual
 
 ```bash
-# Criar o ambiente
+# Criar o ambiente virtual
 python -m venv venv
 
-# Ativar no macOS/Linux (Bash)
+# Ativar no macOS/Linux
 source venv/bin/activate
 
-# Ativar no Windows (PowerShell)
+# Ativar no Windows
 .\venv\Scripts\Activate.ps1
 ```
 
-### 3\. Instale as Dependências
+---
+
+### 3️⃣ Instale as Dependências
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 4\. Configure as Variáveis de Ambiente
+---
 
-Crie um arquivo chamado `.env` na raiz do projeto. Este arquivo não deve ser enviado ao Git.
+### 4️⃣ Configure o Arquivo `.env`
+
+Crie um arquivo `.env` na raiz do projeto (ele **não deve** ser versionado).
 
 ```bash
-# Crie o arquivo (macOS/Linux)
+# macOS/Linux
 touch .env
 
-# Crie o arquivo (Windows)
+# Windows
 echo. > .env
 ```
 
-Abra o arquivo `.env` e adicione a sua string de conexão do PostgreSQL (copiada do Neon ou do seu banco local):
+Adicione a sua URL de conexão do PostgreSQL:
 
-```ini
-# .env
+```bash
 DATABASE_URL='postgresql://usuario:senha@host.neon.tech/nome-do-banco'
 ```
 
-### 5\. Aplique as Migrações do Banco
+---
 
-Esses comandos irão criar as tabelas no seu banco de dados com base nos modelos definidos em `app/models.py`.
+### 5️⃣ Aplique as Migrações
 
 ```bash
-# Define o app principal para o Flask (macOS/Linux)
+# Define o app principal
 export FLASK_APP=run.py
 # No Windows: set FLASK_APP=run.py
 
-# 1. Inicializa a pasta 'migrations' (só na primeira vez)
+# 1. Inicializa o diretório de migrações
 flask db init
 
 # 2. Gera o script de migração
 flask db migrate -m "Initial migration. Create meal table."
 
-# 3. Aplica o script no banco de dados
+# 3. Aplica no banco de dados
 flask db upgrade
 ```
 
-### 6\. Inicie o Servidor
+---
+
+### 6️⃣ Inicie o Servidor
 
 ```bash
 flask run
 ```
 
-O servidor estará rodando em `http://127.0.0.1:5000`.
+O servidor estará disponível em:
+👉 [http://127.0.0.1:5000](http://127.0.0.1:5000)
 
-## Endpoints da API (Uso)
+---
 
-Todos os endpoints estão prefixados com `/api/v1`.
+## 📡 Endpoints da API
 
-### `POST /api/v1/meals`
+> Todos os endpoints estão prefixados com `/api/v1`.
 
-Cria um novo registro de refeição.
+---
 
-**Corpo da Requisição (JSON):**
+### 🔸 **POST /api/v1/meals**
+
+Cria uma nova refeição.
+
+#### Corpo da Requisição
 
 ```json
 {
@@ -121,7 +154,7 @@ Cria um novo registro de refeição.
 }
 ```
 
-**Resposta de Sucesso (201 Created):**
+#### Resposta (201 Created)
 
 ```json
 {
@@ -138,11 +171,13 @@ Cria um novo registro de refeição.
 }
 ```
 
-### `GET /api/v1/meals`
+---
 
-Retorna uma lista de todas as refeições registradas.
+### 🔸 **GET /api/v1/meals**
 
-**Resposta de Sucesso (200 OK):**
+Lista todas as refeições.
+
+#### Resposta (200 OK)
 
 ```json
 {
@@ -160,11 +195,13 @@ Retorna uma lista de todas as refeições registradas.
 }
 ```
 
-### `GET /api/v1/meals/<int:meal_id>`
+---
 
-Retorna os detalhes de uma refeição específica.
+### 🔸 **GET /api/v1/meals/[int:meal_id](int:meal_id)**
 
-**Resposta de Sucesso (200 OK):**
+Obtém os detalhes de uma refeição específica.
+
+#### Resposta (200 OK)
 
 ```json
 {
@@ -180,7 +217,7 @@ Retorna os detalhes de uma refeição específica.
 }
 ```
 
-**Resposta de Erro (404 Not Found):**
+#### Resposta (404 Not Found)
 
 ```json
 {
@@ -188,11 +225,13 @@ Retorna os detalhes de uma refeição específica.
 }
 ```
 
-### `PUT /api/v1/meals/<int:meal_id>`
+---
 
-Atualiza (substitui) uma refeição existente. O corpo da requisição deve ser o objeto completo.
+### 🔸 **PUT /api/v1/meals/[int:meal_id](int:meal_id)**
 
-**Corpo da Requisição (JSON):**
+Atualiza uma refeição existente.
+
+#### Corpo da Requisição
 
 ```json
 {
@@ -203,7 +242,7 @@ Atualiza (substitui) uma refeição existente. O corpo da requisição deve ser 
 }
 ```
 
-**Resposta de Sucesso (200 OK):**
+#### Resposta (200 OK)
 
 ```json
 {
@@ -220,17 +259,31 @@ Atualiza (substitui) uma refeição existente. O corpo da requisição deve ser 
 }
 ```
 
-### `DELETE /api/v1/meals/<int:meal_id>`
+---
 
-Deleta uma refeição específica do banco de dados.
+### 🔸 **DELETE /api/v1/meals/[int:meal_id](int:meal_id)**
 
-**Resposta de Sucesso:**
+Remove uma refeição.
 
-  * **Status Code:** `204 No Content`
-  * **Corpo da Resposta:** Vazio.
+#### Resposta
 
------
+```
+Status Code: 204 No Content
+Corpo: (vazio)
+```
+
+---
 
 ## 📄 Contexto
 
-Este projeto foi desenvolvido como um desafio avançado proposto pela Rocketseat.
+Este projeto foi desenvolvido como um **desafio avançado da Rocketseat**, com o objetivo de reforçar habilidades em:
+
+* Flask e arquitetura modular;
+* Criação de APIs RESTful completas;
+* Boas práticas de versionamento e persistência de dados.
+
+---
+
+## 🧠 Autor
+
+**Manoel Olímpio**
