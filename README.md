@@ -1,6 +1,3 @@
-Aqui está o conteúdo formatado em Markdown, pronto para ser usado em um `README.md` no GitHub.
-
-````markdown
 # Daily Diet API
 
 Esta é uma API RESTful completa para o controle de dieta diária, desenvolvida como um desafio prático de Flask. A aplicação permite o registro e gerenciamento de refeições, com informações detalhadas como nome, descrição, data/hora e se a refeição está ou não dentro da dieta.
@@ -39,7 +36,6 @@ Siga os passos abaixo para configurar e executar o projeto em seu ambiente de de
 ```bash
 git clone [https://github.com/seu-usuario/daily-diet-api.git](https://github.com/seu-usuario/daily-diet-api.git)
 cd daily-diet-api
-````
 
 ### 2\. Crie e Ative o Ambiente Virtual (venv)
 
@@ -238,6 +234,3 @@ Deleta uma refeição específica do banco de dados.
 ## 📄 Contexto
 
 Este projeto foi desenvolvido como um desafio avançado proposto pela Rocketseat.
-
-```
-```
